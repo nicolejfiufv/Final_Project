@@ -18,7 +18,6 @@ export class NewMemory implements OnInit{
   memoForm = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     type: ['', Validators.required],
-    level: [1, [Validators.required, Validators.min(1)]],
     nature: ['', Validators.required],
   });
 
