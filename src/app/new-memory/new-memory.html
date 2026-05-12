@@ -1,0 +1,54 @@
+<div class="pokedex-container">
+  <h2>{{ editingId() ? 'Update Memo': 'Register Memo'}}</h2>
+
+  <form [formGroup]="memoForm" (ngSubmit)="onSubmit()" class="memo-form">
+    <div class="form-group">
+      <label for="title">TITLE</label>
+      <input id="name" type="text" formControlName="name" placeholder="e.g. A not so good story" />
+    </div>
+
+    <div class="form-group">
+      <label for="type">CONTENTS</label>
+      <input id="type" type="text" formControlName="type" placeholder="e.g. DEAR DIARY, I  have....." />
+    </div>
+
+    <div class="form-group">
+      <label for="level">DATE</label>
+      <input id="type" type="text" formControlName="type" placeholder="MM/DD/YY"/>
+    </div>
+
+    <div class="form-group">
+      <label for="nature">MOOD</label>
+      <input id="nature" type="text" formControlName="nature" placeholder="e.g. HAPPY" />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="memoForm.invalid" class="btn-submit">
+        {{ editingId() ? 'CONFIRM UPDATE' : 'ADD MEMORY' }}
+      </button>
+
+      @if(editingId()){
+        <button type="button" (click)="cancelEdit()" class="btn-cancel"> CANCEL </button>
+      }
+    </div>
+  </form>
+
+  <hr />
+
+  <h3>MEMORIES</h3>
+  <div class="pokemon-grid">
+    @for (p of memoService.memoList(); track p._id) {
+      <div class="pokemon-card">
+        <div class="card-info">
+          <strong>{{ p.name }}</strong>
+          <span>(Lvl {{ p.level }})</span>
+          <p>{{ p.type }} | {{ p.nature }}</p>
+        </div>
+        <div class="card-actions">
+          <button (click)="startEdit(p)" class="btn-edit">EDIT</button>
+          <button (click)="deleteMemo(p._id)" class="btn-delete">REMOVE</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

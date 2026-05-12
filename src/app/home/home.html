@@ -1,0 +1,19 @@
+<body>
+    <h1>Sunlit Thoughts</h1>
+    <main>
+        @for(item of home(); track item){
+            <h2>{{item.title}}</h2>
+            <h3>{{item.description}}</h3>
+        }
+    </main>
+    <nav>
+        <ul class="nav-links">
+        <li>
+            <a routerLink="/new"
+            routerLinkActive="active-link">ADD A NEW MEMORY</a>
+        </li>
+        </ul>
+    </nav>
+    <h3>“Sometimes you will never know the value of a moment until it becomes a memory.”</h3>
+    <H4>— Dr. Seuss</H4>
+</body>
